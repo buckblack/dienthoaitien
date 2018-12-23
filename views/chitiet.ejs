@@ -1,0 +1,190 @@
+<% include layout/head %>
+
+    <% include layout/header %>
+
+        <% include layout/nav %>
+            <% include layout/thanh_trang_thai %>
+                <% include ../public/js/functions %>
+
+                    <!-- breadcrumbs -->
+
+
+                    <!-- //breadcrumbs -->
+                    <!--- beverages --->
+                    <div class="products">
+                        <div class="container">
+                            <div class="agileinfo_single">
+                                <div class="col-md-4 agileinfo_single_left">
+                                    <img style="width:100%" id="example" src="/images/dienthoai/<%= san_pham.Ma_so %>.png" alt=" " class="img-responsive">
+                                </div>
+                                <div class="col-md-8 agileinfo_single_right">
+                                    <h2>
+                                        <%= san_pham.Ten%>
+                                    </h2>
+
+                                    <div class="w3agile_description">
+                                        <h4>Mô tả :</h4>
+                                        <p>
+                                            <%#= san_pham.noi_dung%>
+                                        </p>
+                                    </div>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                                            <h4 class="m-sing">
+                                                <%= Number(san_pham.Don_gia_Ban).toLocaleString()%> VNĐ</h4>
+                                        </div>
+                                        <hr>
+                                        <div class="float-left">
+                                            <p>Số lượng: <input type="number" min=1 max=5 id="Th_So_luong" value="1" class="text-right"></p>
+                                        </div>
+                                        <div class="float-right btn btn-sm btn-outline-danger">
+
+                                            <a class="nav-link " href="javacsript:void(0)" id="Th_Mua">
+                                                <i class="fa fa-shopping-cart"></i> Mua
+                                            </a>
+                                        </div>
+                                        <div class="snipcart-details agileinfo_single_right_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" id="">
+                                                    <input type="hidden" name="currency_code" value="VND">
+                                                    <input type="button" id="" don_gia="" value="thêm vào giỏ" class="button">
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- new -->
+                    <div class="newproducts-w3agile">
+                        <div class="container">
+                            <h3>Sản phẩm cùng loại</h3>
+                            <div class="agile_top_brands_grids">
+                                <% cung_loai.forEach(sp => {%>
+
+                                    <div class="col-md-3 top_brand_left-1" style="padding-bottom:30px;">
+                                        <div class="hover14 column">
+                                            <div class="agile_top_brand_left_grid">
+                                                <div class="agile_top_brand_left_grid_pos">
+
+                                                </div>
+                                                <div class="agile_top_brand_left_grid1">
+                                                    <figure>
+                                                        <div class="snipcart-item block">
+                                                            <div class="snipcart-thumb">
+                                                                <a href="/chi-tiet/<%=xoa_dau_tieng_viet(sp.Ten)%>/<%=sp.Ma_so%>"><img title=" " height="150px" width="200px" alt=" " src="/images/dienthoai/<%= sp.Ma_so %>.png"></a>
+                                                                <div style="height:50px">
+                                                                    <p>
+                                                                        <%= sp.Ten%>
+                                                                    </p>
+                                                                </div>
+
+                                                                <h4>
+                                                                    <%= sp.Don_gia_Ban.toLocaleString()%> VNĐ</h4>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <a class="nav-link " href="/chi-tiet/<%=xoa_dau_tieng_viet(sp.Ten)%>/<%=sp.Ma_so%>">
+                                                                    <i class="fa fa-info-circle"></i> Chi tiết
+                                                                </a>
+                                                            </div>
+                                                            <div class="snipcart-details top_brand_home_details">
+                                                                <form action="#" method="post">
+                                                                    <fieldset>
+
+                                                                        <input type="hidden" id="don_gia({$san_pham->don_gia})">
+                                                                        <input type="hidden" name="currency_code" value="VND">
+                                                                        <input type="button" id="{$san_pham->ma_san_pham}" don_gia="{$san_pham->don_gia}" value="thêm vào giỏ" class="button">
+                                                                    </fieldset>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <%});%>
+                                        <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- //new -->
+                    <div class="products">
+                        <div class="container">
+                            <h3>Bình luận:</h3>
+                            <form method="post">
+                                <textarea name="binh_luan" id="binh_luan" class="ckeditor"></textarea>
+                                <script>
+                                    CKEDITOR.replace('binh_luan', {
+                                        customConfig: 'config_binh_luan.js'
+                                    });
+                                </script>
+                                <div align="left" class="login-form-grids">
+                                    <h5>Thông tin cá nhân</h5>
+                                    <input type="text" name="ten_khach_hang" value="" id="bl_ten_kh" placeholder="Họ tên..." required>
+                                    <input style="margin-bottom:15px" type="email" value="" id="bl_email" name="email" placeholder="Địa chỉ Email" required>
+                                    <input type="text" name="dien_thoai" value="" id="bl_dien_thoai" placeholder="Nhập số điện thoại" required>
+                                    <input type="submit" name="btn_binh_luan" onclick="return kiem_tra_binh_luan()" value="Gửi bình luận">
+
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                    <div class="container">
+                        <table class="table table-bordered table-dark">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" scope="col">Bình luận:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Tên 1</th>
+                                    <td>MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark MarkMark </td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tên 2</th>
+                                    <td>Jacob</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tên 3</th>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                        Th_Mua.onclick = () => {
+                            var dtMua = {
+                                    Ma_so: '<%=san_pham.Ma_so%>',
+                                    So_luong: Number(Th_So_luong.value)
+                                }
+                                //console.log(dtMua)
+                            fetch('/them-gio-hang', {
+                                method: 'post',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(dtMua)
+                            }).then(response => {
+                                if (response.ok) return response.json()
+                            }).then(data => {
+                                //alert(JSON.stringify(data))
+                                alert(`Đã thêm: ${data.length} Sản phẩm vào giỏ hàng`)
+                                window.location.reload()
+                            })
+
+                        }
+                    </script>
+                    <% include layout/footer %>

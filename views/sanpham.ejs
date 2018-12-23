@@ -1,0 +1,81 @@
+<% include layout/head %>
+
+<% include layout/header %>
+
+<% include layout/nav %>
+
+<% include layout/thanh_trang_thai %>
+<% include ../public/js/functions %>
+<!-- breadcrumbs -->
+
+
+<!-- //breadcrumbs -->
+<!--- beverages --->
+
+<div class="products">
+<div class="container" style="margin-top:-50px">
+  <div class="btn float-right pr-5 btn-group" style="float:right">
+    <select class="btn btn-sm border border-danger ml-2" onchange="Xuat_Dien_thoai_theo_Don_gia(this.value)">
+        <option value="0-50000000">Lọc Điện thoại theo Đơn giá Bán</option>
+        <option value="0-2000000">Đơn giá Bán dưới 2 triệu </option>
+        <option value="2000000-4000000">Đơn giá Bán lớn 2 triệu và nhỏ 4 triệu </option>
+        <option value="4000000-50000000">Đơn giá Bán lớn 4 triệu </option>
+    </select>
+    <a class="btn btn-sm border border-danger ml-1 mr-1 " href="/dien-thoai/sap-tang" id="Th_Tang">
+        <i class="fa fa-sort-alpha-asc"></i>
+    </a>
+    <a class="btn btn-sm border border-danger " href="/dien-thoai/sap-giam" id="Th_Giam"">
+                            <i class="
+        fa fa-sort-alpha-desc"></i>
+    </a>
+</div>
+  <div class="col-md-12 products-right">
+
+    <% ds_dien_thoai.forEach(sp => {%>
+      <div class="agile_top_brands_grids">
+        <div class="col-md-3 top_brand_left" style="padding-bottom:30px">
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid" style="background:none">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb"><a href="/chi-tiet/<%=xoa_dau_tieng_viet(sp.Ten)%>/<%=sp.Ma_so%>"><img title=" " width="200px" height="180px" alt=" " src="/images/dienthoai/<%= sp.Ma_so%>.png"></a>
+                      <div style="height:50px">
+                        <p><%= sp.Ten%></p>
+                      </div>
+                      <h4 style="color:#F00; font-size:20px;"><%= (sp.Don_gia_Ban).toLocaleString()%> VNĐ</h4>
+                    </div>
+                    <div class="text-center">
+                      <a class="nav-link " href="/chi-tiet/<%=xoa_dau_tieng_viet(sp.Ten)%>/<%=sp.Ma_so%>">
+                          <i class="fa fa-info-circle"></i> Chi tiết
+                      </a>
+                  </div>
+                    <div class="snipcart-details top_brand_home_details">
+                      <form action="#" method="post">
+                        <fieldset>
+                          <input type="button" id="{$san_pham->ma_san_pham}" don_gia="{$san_pham->don_gia}" value="thêm vào giỏ" class="button" >
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%});%>
+      <div class="clearfix"> </div>
+      <nav class="numbering">  </nav>
+
+
+
+    </div>
+
+
+    <div class="clearfix"> </div>
+  </div>
+</div>
+
+
+<% include layout/footer %>
