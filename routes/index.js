@@ -24,7 +24,7 @@ var xl_mongo = require('../public/js/XL_LUU_TRU_MONGO')
     /* GET home page. */
 router.get('/', function(req, res, next) {
     //res.send(JSON.stringify(du_lieu.cua_hang))
-    res.render('trangchu', { tieude: 'Trang chủ', ds_dien_thoai: du_lieu.dien_thoai, thuong_hieu: du_lieu.thuong_hieu });
+    res.render('trangchu', { tieude: 'Trang', ds_dien_thoai: du_lieu.dien_thoai, thuong_hieu: du_lieu.thuong_hieu });
 });
 
 router.get('/dienthoai', function(req, res, next) {
