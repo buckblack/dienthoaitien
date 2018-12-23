@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/dienthoai', function(req, res, next) {
     //res.send(JSON.stringify(du_lieu.cua_hang))
-    res.render('sanpham', { tieude: 'Điện thoại', trangthai: ' Điện thoại', ds_dien_thoai: du_lieu.dien_thoai });
+    res.render('sanpham', { tieude: 'Điện', trangthai: ' Điện', ds_dien_thoai: du_lieu.dien_thoai });
 });
 
 router.get('/dienthoai/iphone', function(req, res, next) {
